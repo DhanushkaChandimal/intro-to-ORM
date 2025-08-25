@@ -37,3 +37,8 @@ query = select(User).where(User.name == "Alice")
 user = session.execute(query).scalars().first()
 
 print(user.name)  # Outputs: Alice
+
+# Query users whose name starts with 'A'
+users = session.query(User).filter(User.name.like('A%')).all()
+for user in users:
+    print(user.name, user.email)

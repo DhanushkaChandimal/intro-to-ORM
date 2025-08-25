@@ -42,3 +42,15 @@ print(user.name)  # Outputs: Alice
 users = session.query(User).filter(User.name.like('A%')).all()
 for user in users:
     print(user.name, user.email)
+    
+    
+
+# Query the user
+query = select(User).where(User.id == 1)
+user = session.execute(query).scalars().first()
+
+# Update the user's name
+user.name = 'Alicia'
+
+# Commit the changes
+session.commit()

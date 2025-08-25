@@ -1,8 +1,7 @@
-from sqlalchemy import create_engine
+from sqlalchemy import create_engine, select
 from User import User
 from Base import Base
 from sqlalchemy.orm import Session
-from sqlalchemy import select
 
 # Create an engine for SQLite
 engine = create_engine('mysql+mysqlconnector://root:1234@localhost/mydatabase')

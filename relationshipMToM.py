@@ -40,4 +40,44 @@ class Pet(Base):
     owners: Mapped[List["User"]] = relationship(secondary=user_pet, back_populates="pets")
 
 # Create tables
-Base.metadata.create_all(engine)
+# Base.metadata.create_all(engine)
+
+
+session = Session(engine)
+
+# mother = User(name="Alice", email="awonderland@email.com")
+# son = User(name="Peter", email="pcottontail@email.com")
+
+# dog = Pet(name="Buddy", animal="dog")
+# goldfish = Pet(name="Goldy", animal="fish")
+
+# #Adding all new Objects to the session
+# session.add(mother)
+# session.add(son)
+# session.add(dog)
+# session.add(goldfish)
+# session.commit()
+
+
+mother = session.get(User, 1)  # Assuming User with id=1 is Alice
+son = session.get(User, 2)  # Assuming User with id=2 is Peter
+dog = session.get(Pet, 1)  # Assuming Pet with id=1 is Buddy
+# goldfish = session.get(Pet, 2)  # Assuming Pet with id=2 is Goldy
+
+# #Adding relationships from mother to dog, and son to dog
+# mother.pets.append(dog)
+# son.pets.append(dog)
+
+# #Adding relationship from the son to the goldfish
+# son.pets.append(goldfish)
+
+# session.commit()
+
+
+# Owners of a pet
+for owner in dog.owners:
+    print(owner.name)  # Outputs: Alice, Peter
+
+# Pets owned by a user
+for pet in son.pets:
+    print(pet.name)  # Outputs: Buddy, Goldy
